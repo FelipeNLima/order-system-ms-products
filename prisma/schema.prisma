@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "./generated"
 }
 
 datasource db {
@@ -39,5 +40,5 @@ model Stock {
   quantity          Int
   quantityAvailable Int
   products          Products @relation(fields: [productID], references: [id])
-  productID         Int
+  productID         Int      @unique
 }

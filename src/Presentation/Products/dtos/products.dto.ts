@@ -1,11 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  IsArray,
   IsDate,
   IsDefined,
   IsNumber,
   IsOptional,
   IsString,
 } from 'class-validator';
+import { StockDto } from 'src/Presentation/Stock/dtos/stock.dto';
 
 export class ProductsDto {
   @IsOptional()
@@ -34,4 +36,8 @@ export class ProductsDto {
   @IsDefined()
   @IsNumber()
   categoryID: number;
+
+  @ApiProperty()
+  @IsArray()
+  stock: StockDto[];
 }

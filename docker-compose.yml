@@ -1,9 +1,9 @@
-version: '4.34.3'
+version: '3.9'
 
 services:
   mysqldb:
     image: mysql:latest
-    container_name: dbMySql
+    container_name: dbMySqlProduct
     restart: always
     env_file: ./.env
     environment:
@@ -16,13 +16,13 @@ services:
     volumes:
       - db:/var/lib/mysql
     networks:
-      - orderSystem
+      - orderSystemMsProduct
 
   api:
     depends_on:
       - mysqldb
-    container_name: nestjs
-    image: nestjs-dev
+    container_name: nestjsProduct
+    image: nestjs-product
     restart: always
     build:
       context: .
@@ -41,10 +41,23 @@ services:
       - .:/app
       - /app/node_modules
     networks:
-      - orderSystem
+      - orderSystemMsProduct
+
+  rabbitmq:
+    depends_on:
+      - api
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    volumes:
+      - db:/var/lib/rabbitmq
+    networks:
+      - orderSystemMsProduct
 
 volumes:
   db:
 networks:
-  orderSystem:
+  orderSystemMsProduct:
     driver: bridge
