@@ -86,9 +86,15 @@ describe('Unit Test Categories', () => {
 
   it('should Delete categories by ID', async () => {
     const id = 1;
+    const results = {
+      id: 1,
+      createdAt: new Date('2024-10-29T14:01:25.029Z'),
+      updatedAt: new Date('2024-10-29T14:01:25.029Z'),
+      categoryID: 1,
+      type: 'sobremesa',
+    };
+    prismaMock.categories.delete.mockResolvedValue(results);
 
-    prismaMock.categories.delete.mockResolvedValue(200);
-
-    await expect(deleteCategoriesById(id)).resolves.toEqual(200);
+    await expect(deleteCategoriesById(id)).resolves.toEqual(results);
   });
 });
