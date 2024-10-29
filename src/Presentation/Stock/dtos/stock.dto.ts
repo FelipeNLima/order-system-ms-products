@@ -24,8 +24,8 @@ export class StockDto {
   @IsNumber()
   quantityAvailable: number;
 
-  // @ApiProperty()
-  // @IsDefined()
-  // @IsNumber()
-  // productID: number;
+  @ApiProperty()
+  @IsDefined()
+  @IsNumber()
+  productID: number;
 }

@@ -16,9 +16,20 @@ user: 2
 {
   "name": "sorvete",
   "priceUnit": 4,
-  "categoryID": 1,
-  "stock": [{
-    "quantity": 100,
-    "quantityAvailable": 100
-  }]
+  "categoryID": 1
+}
+
+# PATCH
+# Atualizar Produtos
+###
+
+PATCH http://localhost:3001/products
+Content-Type: application/json
+user: 2
+
+{
+  "id": 1,
+  "name": "sorvete",
+  "priceUnit": 5,
+  "categoryID": 1
 }

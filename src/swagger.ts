@@ -9,7 +9,7 @@ export default async function (app: INestApplication) {
 
   if (env !== 'prd') {
     const documentBuild = new DocumentBuilder()
-      .setTitle('API Backend')
+      .setTitle('API Products')
       .setDescription('API desenvolvida para o projeto pos-tech.')
       .setVersion('1.0')
       .build();
@@ -17,7 +17,7 @@ export default async function (app: INestApplication) {
     const document = SwaggerModule.createDocument(app, documentBuild);
 
     SwaggerModule.setup('api/swagger', app, document, {
-      customSiteTitle: 'API Backend',
+      customSiteTitle: 'MicroService Products',
       swaggerOptions: {
         syntaxHighlight: {
           activate: true,

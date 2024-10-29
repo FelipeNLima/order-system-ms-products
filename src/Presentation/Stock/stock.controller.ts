@@ -8,7 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiHeader, ApiTags } from '@nestjs/swagger';
-import { StockService } from 'src/Application/services/stock.service';
+import { StockService } from '../../Application/services/stock.service';
 import { Roles } from '../../Infrastructure/Guard/decorators/roles.decorator';
 import { StockDto } from './dtos/stock.dto';
 

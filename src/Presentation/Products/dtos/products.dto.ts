@@ -7,7 +7,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { StockDto } from 'src/Presentation/Stock/dtos/stock.dto';
+import { StockDto } from '../../../Presentation/Stock/dtos/stock.dto';
 
 export class ProductsDto {
   @IsOptional()

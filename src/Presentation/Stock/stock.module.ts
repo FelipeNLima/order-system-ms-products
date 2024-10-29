@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 
-import { StockService } from 'src/Application/services/stock.service';
-import { StockAdapter } from 'src/Domain/Adapters/stock.adapter';
-import { StockRepository } from 'src/Domain/Repositories/stockRepository';
-import { ConsumerService } from 'src/Infrastructure/RabbitMQ/rabbitMQ.service';
+import { StockService } from '../../Application/services/stock.service';
+import { StockAdapter } from '../../Domain/Adapters/stock.adapter';
+import { StockRepository } from '../../Domain/Repositories/stockRepository';
+import { ConsumerService } from '../../Infrastructure/RabbitMQ/rabbitMQ.service';
 import { PrismaService } from '../../Infrastructure/Apis/prisma.service';
 import { StockController } from './stock.controller';
 

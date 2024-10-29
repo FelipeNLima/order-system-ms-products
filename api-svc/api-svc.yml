@@ -3,12 +3,12 @@ kind: Service
 metadata:
   labels:
     app: api-svc
-  name: svc-ordersystem-ms-payments-api
+  name: svc-ordersystem-ms-products-api
 spec:
   type: LoadBalancer
   ports:
     - port: 80
       protocol: TCP
-      targetPort: 3000
+      targetPort: 3001
   selector:
-    app: ordersystem-ms-payments-deployment
+    app: ordersystem-ms-products-deployment

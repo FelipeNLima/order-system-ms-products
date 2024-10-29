@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Stock, StockUpdate } from 'src/Domain/Interfaces/stock.interface';
-import { StockRepository } from 'src/Domain/Repositories/stockRepository';
+import { StockRepository } from '../../Domain/Repositories/stockRepository';
+import { Stock, StockUpdate } from '../../Domain/Interfaces/stock.interface';
 
 @Injectable()
 export class StockService {

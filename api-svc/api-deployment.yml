@@ -3,28 +3,28 @@ kind: Deployment
 metadata:
   name: api-deployment
   labels:
-    app: ordersystem-ms-payments-deployment
+    app: ordersystem-ms-products-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ordersystem-ms-payments-deployment
+      app: ordersystem-ms-products-deployment
   template:
     metadata:
       labels:
-        app: ordersystem-ms-payments-deployment
+        app: ordersystem-ms-products-deployment
     spec:
       imagePullSecrets:
         - name: regcred
       containers:
-        - name: order-system-ms-payments-api-container
-          image: 575258201927.dkr.ecr.us-east-1.amazonaws.com/order-system-payments:latest
+        - name: order-system-ms-products-api-container
+          image: 575258201927.dkr.ecr.us-east-1.amazonaws.com/order-system-products:latest
           resources:
             limits:
               memory: "256Mi"
               cpu: "500m"
           ports:
-            - containerPort: 3000
+            - containerPort: 3001
           envFrom:
             - configMapRef:
                 name: api-configmap

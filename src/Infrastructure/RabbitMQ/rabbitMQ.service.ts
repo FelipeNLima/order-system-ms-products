@@ -2,7 +2,7 @@ import { Global, Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import amqp, { ChannelWrapper } from 'amqp-connection-manager';
 import { ConfirmChannel } from 'amqplib';
-import { StockService } from 'src/Application/services/stock.service';
+import { StockService } from '../../Application/services/stock.service';
 
 @Global()
 @Injectable()
