@@ -54,11 +54,9 @@ jobs:
         run: yarn jest --coverage
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@master
-        with: sonar-scanner \
-          -Dsonar.projectKey=order-system-ms-products \
-          -Dsonar.sources=. \
-          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-          -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
   deploy:
     runs-on: ubuntu-latest
