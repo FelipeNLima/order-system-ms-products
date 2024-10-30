@@ -89,13 +89,7 @@
     "node": ">= 18"
   },
   "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
+    "testRegex": ".spec.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
@@ -127,7 +121,6 @@
         "node_modules/.prisma/client/*.node"
       ]
     },
-    "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "testTimeout": 90000
   }
