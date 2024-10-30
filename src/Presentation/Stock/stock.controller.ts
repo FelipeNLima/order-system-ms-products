@@ -11,6 +11,7 @@ import { ApiHeader, ApiTags } from '@nestjs/swagger';
 import { StockService } from '../../Application/services/stock.service';
 import { Roles } from '../../Infrastructure/Guard/decorators/roles.decorator';
 import { StockDto } from './dtos/stock.dto';
+import { StockUpdateDto } from './dtos/stockUpdate.dto';
 
 @ApiTags('Estoque')
 @Controller('stock')
@@ -68,7 +69,7 @@ export class StockController {
     description: 'ID do usuário ADMIN',
   })
   @Roles(['admin'])
-  async update(@Body() dto: StockDto) {
+  async update(@Body() dto: StockUpdateDto) {
     try {
       const stock = await this.stockService.update(dto);
       return stock;

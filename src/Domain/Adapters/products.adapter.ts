@@ -11,7 +11,8 @@ export class ProductsAdapter implements ProductsRepository {
     try {
       return await this.prisma.products.findUnique({ where: { id: id } });
     } catch (error) {
-      const message = error?.meta?.target || error?.meta?.details;
+      const message =
+        error?.message || error?.meta?.target || error?.meta?.details;
       throw new Error(message);
     }
   }
@@ -20,7 +21,8 @@ export class ProductsAdapter implements ProductsRepository {
     try {
       return await this.prisma.products.create({ data: products });
     } catch (error) {
-      const message = error?.meta?.target || error?.meta?.details;
+      const message =
+        error?.message || error?.meta?.target || error?.meta?.details;
       throw new Error(message);
     }
   }
@@ -34,7 +36,8 @@ export class ProductsAdapter implements ProductsRepository {
         data: products,
       });
     } catch (error) {
-      const message = error?.meta?.target || error?.meta?.details;
+      const message =
+        error?.message || error?.meta?.target || error?.meta?.details;
       throw new Error(message);
     }
   }
@@ -43,7 +46,8 @@ export class ProductsAdapter implements ProductsRepository {
     try {
       return await this.prisma.products.delete({ where: { id: id } });
     } catch (error) {
-      const message = error?.meta?.target || error?.meta?.details;
+      const message =
+        error?.message || error?.meta?.target || error?.meta?.details;
       throw new Error(message);
     }
   }

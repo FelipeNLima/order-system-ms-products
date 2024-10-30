@@ -69,7 +69,6 @@ describe('Unit Test Categories', () => {
       id: 1,
       createdAt: new Date('2024-10-29T14:01:25.029Z'),
       updatedAt: new Date('2024-10-29T14:01:25.029Z'),
-      categoryID: 1,
       type: 'sobremesa',
     };
 
@@ -79,7 +78,6 @@ describe('Unit Test Categories', () => {
       id: 1,
       createdAt: new Date('2024-10-29T14:01:25.029Z'),
       updatedAt: new Date('2024-10-29T14:01:25.029Z'),
-      categoryID: 1,
       type: 'sobremesa',
     });
   });
@@ -90,7 +88,6 @@ describe('Unit Test Categories', () => {
       id: 1,
       createdAt: new Date('2024-10-29T14:01:25.029Z'),
       updatedAt: new Date('2024-10-29T14:01:25.029Z'),
-      categoryID: 1,
       type: 'sobremesa',
     };
     prismaMock.categories.delete.mockResolvedValue(results);
