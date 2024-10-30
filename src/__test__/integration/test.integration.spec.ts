@@ -50,7 +50,6 @@ beforeAll(async () => {
   urlConnection = process.env.DATABASE_URL;
 
   // create a new instance of PrismaClient with the connection string
-  console.log(urlConnection);
   prismaClient = new PrismaClient({
     datasources: {
       db: {
