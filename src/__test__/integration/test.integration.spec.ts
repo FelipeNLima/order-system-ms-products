@@ -86,9 +86,9 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
+  await container.stop();
   await prismaClient.$disconnect();
   client.destroy();
-  await container.stop();
 });
 
 beforeEach(async () => {
@@ -420,4 +420,10 @@ describe('Integration Test Stock', () => {
     expect(responseDb).toBeTruthy();
     expect(responseDb?.id).toBe(id);
   });
+});
+
+afterAll(async () => {
+  await container.stop();
+  await prismaClient.$disconnect();
+  client.destroy();
 });

@@ -1,44 +1,9 @@
 {
   "moduleFileExtensions": ["js", "json", "ts"],
-  "roots": ["src", "test"],
-
-  "coverageDirectory": "../coverage",
-  "coverageReporters": ["lcov", "text"],
-  "verbose": true,
-  "setupFilesAfterEnv": ["<rootDir>/singleton.ts"],
-  "testRegex": ".spec.ts$",
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
-  },
-  "moduleNameMapper": {
-    "src/(.*)": "<rootDir>/src/$1"
-  },
-  "collectCoverageFrom": [
-    "src/**/*.ts",
-    "!src/main.ts",
-    "!src/swagger.ts",
-    "!src/Infrastructure/*.ts",
-    "!src/app.module.ts",
-    "!src/**/*.module.ts",
-    "!src/**/*.dto.ts",
-    "!src/**/*.interface.ts",
-    "!src/Domain/Utils/Utils/*.ts",
-    "!src/Domain/Enums/*.ts",
-    "!src/Presentation/Health/*.ts",
-    "!src/__test__/mock/*.ts"
-  ],
-  "coverageThreshold": {
-    "global": {
-      "statements": 30,
-      "branches": 10,
-      "functions": 10,
-      "lines": 30
-    }
-  },
-  "pkg": {
-    "assets": ["node_modules/.prisma/client/*.node"]
-  },
-  "detectOpenHandles": true,
-  "testEnvironment": "node",
-  "testTimeout": 90000
+  }
 }

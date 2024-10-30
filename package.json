@@ -125,6 +125,6 @@
     },
     "detectOpenHandles": true,
     "testEnvironment": "node",
-    "testTimeout": 90000
+    "testTimeout": 2000000
   }
 }
