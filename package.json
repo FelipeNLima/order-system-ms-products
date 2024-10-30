@@ -100,11 +100,13 @@
       "src/**/*.ts",
       "!src/main.ts",
       "!src/swagger.ts",
-      "!src/Infrastructure/Guard/*.ts",
+      "!src/Infrastructure/*.ts",
       "!src/app.module.ts",
       "!src/**/*.module.ts",
       "!src/**/*.dto.ts",
       "!src/**/*.interface.ts",
+      "!src/Domain/Utils/Utils/*.ts",
+      "!src/Domain/Enums/*.ts",
       "!src/Presentation/Health/*.ts",
       "!src/__test__/mock/*.ts"
     ],
@@ -121,6 +123,7 @@
         "node_modules/.prisma/client/*.node"
       ]
     },
+    "detectOpenHandles": true,
     "testEnvironment": "node",
     "testTimeout": 90000
   }
