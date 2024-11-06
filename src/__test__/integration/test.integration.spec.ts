@@ -20,7 +20,6 @@ import { CategoriesRepository } from '../../Domain/Repositories/categoriesReposi
 import { ProductsRepository } from '../../Domain/Repositories/productsRepository';
 import { StockRepository } from '../../Domain/Repositories/stockRepository';
 import { PrismaService } from '../../Infrastructure/Apis/prisma.service';
-import { ConsumerService } from '../../Infrastructure/RabbitMQ/rabbitMQ.service';
 import { CategoriesController } from '../../Presentation/Categories/categories.controller';
 import { HealthController } from '../../Presentation/Health/health.controller';
 import { PrismaHealthIndicator } from '../../Presentation/Health/PrismaHealthIndicator.service';
@@ -74,7 +73,6 @@ beforeAll(async () => {
       StockService,
       PrismaService,
       ConfigService,
-      ConsumerService,
       { provide: ProductsRepository, useClass: ProductsAdapter },
       { provide: CategoriesRepository, useClass: CategoriesAdapter },
       { provide: StockRepository, useClass: StockAdapter },
@@ -307,7 +305,7 @@ describe('Integration Test Categories', () => {
 });
 
 describe('Integration Test Stock', () => {
-  it('should create stock', async (done) => {
+  it('should create stock', async () => {
     await request(app.getHttpServer())
       .post('/categories')
       .send({ type: 'sobremesa' })
@@ -340,7 +338,6 @@ describe('Integration Test Stock', () => {
     expect(responseDb?.quantity).toBe(dto.quantity);
     expect(responseDb?.quantityAvailable).toBe(dto.quantityAvailable);
     expect(responseDb?.createdAt).toBeTruthy();
-    done();
   });
 
   it('should update stock', async () => {
