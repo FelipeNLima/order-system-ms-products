@@ -31,9 +31,9 @@ describe('E2E Test Stock', () => {
       controllers: [StockController, HealthController],
       providers: [
         PrismaHealthIndicator,
-        StockService,
         PrismaService,
         ConfigService,
+        StockService,
         { provide: StockRepository, useClass: StockAdapter },
       ],
     })
@@ -57,4 +57,15 @@ describe('E2E Test Stock', () => {
     expect(healthController).toBeDefined();
     expect(healthService).toBeDefined();
   });
+
+  // it('should Get stock by ID', async () => {
+  //   const id = 1;
+  //   const result = await controller.getByID(id);
+  //   expect(result).toEqual({
+  //     id: 1,
+  //     quantity: 100,
+  //     quantityAvailable: 100,
+  //     productID: 1,
+  //   });
+  // });
 });

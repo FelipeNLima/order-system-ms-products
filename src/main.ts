@@ -13,6 +13,11 @@ async function bootstrap() {
     credentials: true,
   };
   app.enableCors(options);
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+    }),
+  );
 
   // Swagger
   await swaggerInit(app);

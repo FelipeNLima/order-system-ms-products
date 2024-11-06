@@ -30,7 +30,7 @@ jobs:
 
       - name: Run test
         run: |
-          yarn test
+          yarn test:unit && yarn test:e2e
 
   sonar:
     name: sonarqube

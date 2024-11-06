@@ -86,9 +86,10 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await container.stop();
   await prismaClient.$disconnect();
   client.destroy();
+  await container.stop();
+  console.log('test db stopped...');
 });
 
 beforeEach(async () => {
@@ -423,7 +424,8 @@ describe('Integration Test Stock', () => {
 });
 
 afterAll(async () => {
-  await container.stop();
   await prismaClient.$disconnect();
+  await container.stop();
   client.destroy();
+  console.log('test db stopped...');
 });
