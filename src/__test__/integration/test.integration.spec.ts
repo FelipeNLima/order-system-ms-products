@@ -307,7 +307,7 @@ describe('Integration Test Categories', () => {
 });
 
 describe('Integration Test Stock', () => {
-  it('should create stock', async () => {
+  it('should create stock', async (done) => {
     await request(app.getHttpServer())
       .post('/categories')
       .send({ type: 'sobremesa' })
@@ -340,6 +340,7 @@ describe('Integration Test Stock', () => {
     expect(responseDb?.quantity).toBe(dto.quantity);
     expect(responseDb?.quantityAvailable).toBe(dto.quantityAvailable);
     expect(responseDb?.createdAt).toBeTruthy();
+    done();
   });
 
   it('should update stock', async () => {
