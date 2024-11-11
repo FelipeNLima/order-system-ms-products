@@ -87,5 +87,43 @@
   },
   "engines": {
     "node": ">= 20"
+  },
+  "jest": {
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "moduleNameMapper": {
+      "src/(.*)": "<rootDir>/src/$1"
+    },
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/main.ts",
+      "!src/swagger.ts",
+      "!src/Infrastructure/**/*.ts",
+      "!src/app.module.ts",
+      "!src/**/*.module.ts",
+      "!src/**/*.dto.ts",
+      "!src/**/*.interface.ts",
+      "!src/Domain/Utils/*.ts",
+      "!src/Domain/Enums/*.ts",
+      "!src/__test__/unit/mock/*.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 74,
+        "branches": 1,
+        "functions": 80,
+        "lines": 70
+      }
+    },
+    "pkg": {
+      "assets": [
+        "node_modules/.prisma/client/*.node"
+      ]
+    },
+    "detectOpenHandles": true,
+    "testEnvironment": "node",
+    "testTimeout": 2000000
   }
 }

@@ -254,6 +254,14 @@ describe('Integration Test Categories', () => {
 
     await request(app.getHttpServer()).get(`/categories/${id}`).expect(200);
 
+    const dto: Products = {
+      name: 'sorvete',
+      priceUnit: 5,
+      categoryID: 1,
+    };
+
+    await request(app.getHttpServer()).post('/products').send(dto).expect(201);
+
     const responseDb = await controllerCategories.getCategoriesByID(id);
 
     expect(responseDb).toBeTruthy();
@@ -271,6 +279,23 @@ describe('Integration Test Categories', () => {
     await request(app.getHttpServer()).delete(`/categories/${id}`).expect(200);
 
     const responseDb = await controllerCategories.getCategoriesByID(1);
+
+    expect(responseDb).toBeNull();
+  });
+
+  it('should Get categories by productID', async () => {
+    await request(app.getHttpServer())
+      .post('/categories')
+      .send({ type: 'sobremesa' })
+      .expect(201);
+
+    const id = 1;
+
+    await request(app.getHttpServer())
+      .get(`/categories/product/${id}`)
+      .expect(200);
+
+    const responseDb = await controllerCategories.getProductByCategoryID(id);
 
     expect(responseDb).toBeNull();
   });

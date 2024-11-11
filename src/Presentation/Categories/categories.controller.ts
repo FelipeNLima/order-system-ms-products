@@ -35,7 +35,7 @@ export class CategoriesController {
     }
   }
 
-  @Get(':categoryID')
+  @Get('product/:categoryID')
   @Roles(['admin'])
   async getProductByCategoryID(@Param('categoryID') categoryID: number) {
     try {
