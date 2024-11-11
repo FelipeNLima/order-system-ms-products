@@ -377,6 +377,40 @@ describe('Integration Test Stock', () => {
     expect(responseDb).toBeTruthy();
     expect(responseDb?.id).toBe(id);
   });
+
+  it('should Get stock by productID', async () => {
+    await request(app.getHttpServer())
+      .post('/categories')
+      .send({ type: 'sobremesa' })
+      .expect(201);
+
+    await request(app.getHttpServer())
+      .post('/products')
+      .send({
+        name: 'sorvete',
+        priceUnit: 5,
+        categoryID: 1,
+      })
+      .expect(201);
+
+    await request(app.getHttpServer())
+      .post('/stock')
+      .send({
+        quantity: 100,
+        quantityAvailable: 100,
+        productID: 1,
+      })
+      .expect(201);
+
+    const id = 1;
+
+    await request(app.getHttpServer()).get(`/stock/product/${id}`).expect(200);
+
+    const responseDb = await controllerStock.getByProductID(1);
+
+    expect(responseDb).toBeTruthy();
+    expect(responseDb?.id).toBe(id);
+  });
 });
 
 afterAll(async () => {
