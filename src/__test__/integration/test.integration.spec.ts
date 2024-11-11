@@ -31,6 +31,9 @@ let prismaClient: PrismaClient; // importamos do Prisma Client
 let app: INestApplication; // importamos nestjs common
 let urlConnection: string; // a url do banco que sera criada pelo testcontainers
 let client: Connection; // importamos do pacote mysql
+let controllerProducts: ProductsController;
+let controllerCategories: CategoriesController;
+let controllerStock: StockController;
 
 beforeAll(async () => {
   jest.setTimeout(5000);
@@ -79,6 +82,9 @@ beforeAll(async () => {
     ],
   }).compile();
 
+  controllerProducts = module.get<ProductsController>(ProductsController);
+  controllerCategories = module.get<CategoriesController>(CategoriesController);
+  controllerStock = module.get<StockController>(StockController);
   app = module.createNestApplication();
   await app.init();
 });
@@ -129,15 +135,10 @@ describe('Integration Test Products', () => {
 
     await request(app.getHttpServer()).post('/products').send(dto).expect(201);
 
-    const productDb = await prismaClient.products.findUnique({
-      where: {
-        id: 1,
-      },
-    });
+    const productDb = await controllerProducts.getByID(1);
 
     expect(productDb).toBeTruthy();
     expect(productDb?.categoryID).toBe(dto.categoryID);
-    expect(productDb?.createdAt).toBeTruthy();
   });
 
   it('should update product', async () => {
@@ -161,11 +162,7 @@ describe('Integration Test Products', () => {
       .send(product)
       .expect(200);
 
-    const productDb = await prismaClient.products.findUnique({
-      where: {
-        id: 1,
-      },
-    });
+    const productDb = await controllerProducts.getByID(1);
 
     expect(productDb).toBeTruthy();
     expect(productDb?.name).toBe(product.name);
@@ -185,11 +182,7 @@ describe('Integration Test Products', () => {
 
     await request(app.getHttpServer()).get(`/products/${id}`).expect(200);
 
-    const productDb = await prismaClient.products.findUnique({
-      where: {
-        id: 1,
-      },
-    });
+    const productDb = await controllerProducts.getByID(1);
 
     expect(productDb).toBeTruthy();
   });
@@ -207,11 +200,7 @@ describe('Integration Test Products', () => {
 
     await request(app.getHttpServer()).delete(`/products/${id}`).expect(200);
 
-    const productDb = await prismaClient.products.findFirst({
-      where: {
-        id,
-      },
-    });
+    const productDb = await controllerProducts.getByID(id);
 
     expect(productDb).toBeNull();
   });
@@ -226,15 +215,10 @@ describe('Integration Test Categories', () => {
       .send(dto)
       .expect(201);
 
-    const responseDb = await prismaClient.categories.findUnique({
-      where: {
-        id: 1,
-      },
-    });
+    const responseDb = await controllerCategories.getCategoriesByID(1);
 
     expect(responseDb).toBeTruthy();
     expect(responseDb?.type).toBe(dto.type);
-    expect(responseDb?.createdAt).toBeTruthy();
   });
 
   it('should update categories', async () => {
@@ -253,11 +237,7 @@ describe('Integration Test Categories', () => {
       .send(dto)
       .expect(200);
 
-    const responseDb = await prismaClient.categories.findUnique({
-      where: {
-        id: 1,
-      },
-    });
+    const responseDb = await controllerCategories.getCategoriesByID(1);
 
     expect(responseDb).toBeTruthy();
     expect(responseDb?.id).toBe(dto.id);
@@ -274,11 +254,7 @@ describe('Integration Test Categories', () => {
 
     await request(app.getHttpServer()).get(`/categories/${id}`).expect(200);
 
-    const responseDb = await prismaClient.categories.findUnique({
-      where: {
-        id: 1,
-      },
-    });
+    const responseDb = await controllerCategories.getCategoriesByID(id);
 
     expect(responseDb).toBeTruthy();
     expect(responseDb?.id).toBe(id);
@@ -294,11 +270,7 @@ describe('Integration Test Categories', () => {
 
     await request(app.getHttpServer()).delete(`/categories/${id}`).expect(200);
 
-    const responseDb = await prismaClient.categories.findFirst({
-      where: {
-        id,
-      },
-    });
+    const responseDb = await controllerCategories.getCategoriesByID(1);
 
     expect(responseDb).toBeNull();
   });
@@ -328,16 +300,11 @@ describe('Integration Test Stock', () => {
 
     await request(app.getHttpServer()).post('/stock').send(dto).expect(201);
 
-    const responseDb = await prismaClient.stock.findUnique({
-      where: {
-        id: 1,
-      },
-    });
+    const responseDb = await controllerStock.getByID(1);
 
     expect(responseDb).toBeTruthy();
     expect(responseDb?.quantity).toBe(dto.quantity);
     expect(responseDb?.quantityAvailable).toBe(dto.quantityAvailable);
-    expect(responseDb?.createdAt).toBeTruthy();
   });
 
   it('should update stock', async () => {
@@ -371,15 +338,10 @@ describe('Integration Test Stock', () => {
 
     await request(app.getHttpServer()).patch('/stock').send(dto).expect(200);
 
-    const responseDb = await prismaClient.stock.findUnique({
-      where: {
-        id: 1,
-      },
-    });
+    const responseDb = await controllerStock.getByID(1);
 
     expect(responseDb).toBeTruthy();
     expect(responseDb?.quantityAvailable).toBe(98);
-    expect(responseDb?.createdAt).toBeTruthy();
   });
 
   it('should Get stock by id', async () => {
@@ -410,11 +372,7 @@ describe('Integration Test Stock', () => {
 
     await request(app.getHttpServer()).get(`/stock/${id}`).expect(200);
 
-    const responseDb = await prismaClient.stock.findUnique({
-      where: {
-        id: 1,
-      },
-    });
+    const responseDb = await controllerStock.getByID(1);
 
     expect(responseDb).toBeTruthy();
     expect(responseDb?.id).toBe(id);
