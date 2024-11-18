@@ -1,8 +1,8 @@
 export interface ProductsByCategory {
   Products: {
     id: number;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
     name: string;
     priceUnit: number;
     categoryID: number;

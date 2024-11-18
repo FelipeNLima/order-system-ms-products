@@ -289,15 +289,28 @@ describe('Integration Test Categories', () => {
       .send({ type: 'sobremesa' })
       .expect(201);
 
+    const dto: Products = {
+      name: 'sorvete',
+      priceUnit: 5,
+      categoryID: 1,
+    };
+
+    await request(app.getHttpServer()).post('/products').send(dto).expect(201);
+
     const id = 1;
-
-    await request(app.getHttpServer())
-      .get(`/categories/product/${id}`)
-      .expect(200);
-
     const responseDb = await controllerCategories.getProductByCategoryID(id);
-
-    expect(responseDb).toBeNull();
+    expect(responseDb).toStrictEqual({
+      Products: [
+        {
+          categoryID: 1,
+          createdAt: new Date(responseDb?.Products[0]?.createdAt),
+          id: 1,
+          name: 'sorvete',
+          priceUnit: 5,
+          updatedAt: new Date(responseDb?.Products[0]?.updatedAt),
+        },
+      ],
+    });
   });
 });
 
