@@ -43,19 +43,6 @@ services:
     networks:
       - orderSystemMsProduct
 
-  rabbitmq:
-    depends_on:
-      - api
-    image: rabbitmq:3-management
-    container_name: rabbitmq
-    ports:
-      - '5672:5672'
-      - '15672:15672'
-    volumes:
-      - db:/var/lib/rabbitmq
-    networks:
-      - orderSystemMsProduct
-
 volumes:
   db:
 networks:

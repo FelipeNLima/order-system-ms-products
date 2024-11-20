@@ -6,9 +6,9 @@ import { StockService } from '../../Application/services/stock.service';
 
 @Global()
 @Injectable()
-export class ConsumerService implements OnModuleInit {
+export class RabbitMqService implements OnModuleInit {
   private readonly channelWrapper: ChannelWrapper;
-  private readonly logger = new Logger(ConsumerService.name);
+  private readonly logger = new Logger(RabbitMqService.name);
   private readonly RABBITMQ_URL = process.env.RABBITMQ_URL;
   private readonly QUEUE = this.configService.get<string>('QUEUE');
 

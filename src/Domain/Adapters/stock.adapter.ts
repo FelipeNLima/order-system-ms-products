@@ -31,7 +31,8 @@ export class StockAdapter implements StockRepository {
     try {
       return await this.prisma.stock.create({ data: stock });
     } catch (error) {
-      const message = error?.meta?.target || error?.meta?.details;
+      const message =
+        error?.message || error?.meta?.target || error?.meta?.details;
       throw new Error(message);
     }
   }

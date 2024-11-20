@@ -1,4 +1,4 @@
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import swaggerInit from './swagger';
@@ -13,17 +13,12 @@ async function bootstrap() {
     credentials: true,
   };
   app.enableCors(options);
-  app.useGlobalPipes(
-    new ValidationPipe({
-      transform: true,
-    }),
-  );
 
   // Swagger
   await swaggerInit(app);
 
   // set port, listen for requests
-  const PORT = process.env.NODE_LOCAL_PORT ?? 3001;
+  const PORT = 3001;
   await app.listen(PORT, () => {
     Logger.log(`Server is running on port ${PORT}.`);
   });
