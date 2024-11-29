@@ -18,10 +18,13 @@ FROM node:latest as runner
 WORKDIR /app 
 
 ENV DATABASE_URL="uri"
-ENV TOKEN_MERCADO_PAGO="uri"
-ENV USERID="uri"
-ENV POSID="uri"
 ENV NODE_LOCAL_PORT="uri"
+ENV ENDPOINT="uri"
+ENV QUEUE="uri"
+ENV AWS_REGION="uri"
+ENV AWS_ACCESS_KEY_ID="uri"
+ENV AWS_SECRET_ACCESS_KEY="uri"
+ENV AWS_SESSION_TOKEN="uri"
 
 COPY --from=builder /app/node_modules ./node_modules/
 COPY --from=builder /app/package*.json ./

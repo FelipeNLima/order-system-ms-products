@@ -4,6 +4,7 @@
 
 GET http://localhost:3001/products/1
 Content-Type: application/json
+user: 2
 
 # POST
 # Criar Produtos

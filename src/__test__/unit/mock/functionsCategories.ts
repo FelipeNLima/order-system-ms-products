@@ -1,6 +1,6 @@
-import prisma from '../../../../test/client';
 import { Categories } from '../../../Domain/Interfaces/categories';
 import { ProductsByCategory } from '../../../Domain/Interfaces/productsByCategory';
+import prisma from '../../client';
 
 export async function getCategoriesById(
   id: number,

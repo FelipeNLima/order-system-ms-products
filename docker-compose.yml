@@ -35,6 +35,12 @@ services:
       - TOKEN_MERCADO_PAGO=$TOKEN_MERCADO_PAGO
       - USERID=$USERID
       - POSID=$POSID
+      - ENDPOINT=$ENDPOINT
+      - QUEUE=$QUEUE
+      - AWS_REGION=$AWS_REGION
+      - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+      - AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN
     stdin_open: true
     tty: true
     volumes:

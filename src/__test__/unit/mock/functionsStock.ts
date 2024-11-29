@@ -1,5 +1,5 @@
-import prisma from '../../../../test/client';
 import { Stock, StockUpdate } from '../../../Domain/Interfaces/stock.interface';
+import prisma from '../../client';
 
 export async function getStockById(id: number): Promise<Stock | null> {
   try {

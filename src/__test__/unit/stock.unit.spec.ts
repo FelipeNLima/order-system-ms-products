@@ -1,5 +1,5 @@
-import { prismaMock } from '../../../test/singleton';
 import { Stock } from '../../Domain/Interfaces/stock.interface';
+import { prismaMock } from '../singleton';
 import {
   getStockById,
   getStockByProductId,

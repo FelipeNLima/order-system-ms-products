@@ -1,5 +1,5 @@
 import { Products } from '../../../Domain/Interfaces/products';
-import prisma from '../../../../test/client';
+import prisma from '../../client';
 
 export async function getProductsById(id: number): Promise<Products | null> {
   try {
