@@ -15,8 +15,8 @@ Content-Type: application/json
 user: 2
 
 {
-  "name": "sorvete",
-  "priceUnit": 4,
+  "name": "sorvete Chocolate",
+  "priceUnit": 3,
   "categoryID": 1
 }
 

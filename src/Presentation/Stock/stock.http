@@ -15,7 +15,7 @@ Content-Type: application/json
 user: 2
 
 {
-  "productID": 2,
+  "productID": 3,
   "quantity": 100,
   "quantityAvailable": 100
 }

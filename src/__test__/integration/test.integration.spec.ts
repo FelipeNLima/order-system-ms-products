@@ -2,11 +2,11 @@ import { HttpModule } from '@nestjs/axios';
 import { INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
-import { PrismaClient } from '@prisma/client';
 import { MySqlContainer, StartedMySqlContainer } from '@testcontainers/mysql';
 import { execSync } from 'child_process';
 import { Connection, createConnection } from 'mysql2';
-import * as request from 'supertest';
+import request from 'supertest';
+import { PrismaClient } from '../../../prisma/generated';
 import { CategoriesService } from '../../Application/services/categories.service';
 import { ProductsService } from '../../Application/services/products.service';
 import { StockService } from '../../Application/services/stock.service';
@@ -299,15 +299,18 @@ describe('Integration Test Categories', () => {
 
     const id = 1;
     const responseDb = await controllerCategories.getProductByCategoryID(id);
+    const createdAt = responseDb?.Products[0].createdAt || new Date();
+    const updatedAt = responseDb?.Products[0]?.updatedAt || new Date();
+
     expect(responseDb).toStrictEqual({
       Products: [
         {
           categoryID: 1,
-          createdAt: new Date(responseDb?.Products[0]?.createdAt),
+          createdAt: createdAt,
           id: 1,
           name: 'sorvete',
           priceUnit: 5,
-          updatedAt: new Date(responseDb?.Products[0]?.updatedAt),
+          updatedAt: updatedAt,
         },
       ],
     });
