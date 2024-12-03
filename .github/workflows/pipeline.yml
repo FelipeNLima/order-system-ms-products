@@ -44,10 +44,9 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       # Step 3: Log in to AWS ECR
-      - name: Log in to Amazon ECR
+      - name: Login to Amazon ECR
         id: login-ecr
-        run: |
-          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECR_REPOSITORY }}
+        uses: aws-actions/amazon-ecr-login@v2
 
       # Step 4: Build and tag the Docker image
       - name: Build Docker Image
