@@ -55,7 +55,7 @@ jobs:
           IMAGE_TAG: 'latest'
         run: |
           pwd
-          docker buildx build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f pwd/Dockerfile.
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
       - name: Deploy Aws EKS
