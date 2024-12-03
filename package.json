@@ -128,7 +128,7 @@
       ]
     },
     "detectOpenHandles": true,
-    "testEnvironment": "node",
+    "testEnvironment": "jsdom",
     "testTimeout": 2000000
   }
 }

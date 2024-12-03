@@ -36,7 +36,6 @@ let controllerCategories: CategoriesController;
 let controllerStock: StockController;
 
 beforeAll(async () => {
-  jest.setTimeout(5000);
   container = await new MySqlContainer().start();
   client = createConnection({
     host: container.getHost(),
@@ -98,6 +97,7 @@ afterAll(async () => {
 
 beforeEach(async () => {
   // drop schema and create a new one
+  console.log(process.env);
   execSync(`npx prisma migrate reset --force`, {
     env: {
       ...process.env,
