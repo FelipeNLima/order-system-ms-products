@@ -43,24 +43,31 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # Step 3: Log in to AWS ECR
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-      # Step 4: Build and tag the Docker image
-      - name: Build Docker Image
+      - name: Build, tag, and push the image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+          IMAGE_TAG: 'latest'
         run: |
-          docker build -t my-app:latest .
-          docker tag my-app:latest ${{ secrets.ECR_REPOSITORY }}:latest
-
-      # Step 5: Push the Docker image to ECR
-      - name: Push to Amazon ECR
-        run: |
-          docker push ${{ secrets.ECR_REPOSITORY }}:latest
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f $System.DefaultWorkingDirectory/Dockerfile .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
       - name: Deploy Aws EKS
-        if: steps.login-ecr.outcome != 'failure'
+        if: steps.build-image.outcome != 'failure'
+        env:
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
+        run: |
+          aws eks update-kubeconfig --region $AWS_REGION --name $CLUSTER_NAME
+          kubectl apply -f api-svc
+
+      - name: Deploy Aws EKS
+        if: steps.build-image.outcome != 'failure'
         env:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
