@@ -97,7 +97,6 @@ afterAll(async () => {
 
 beforeEach(async () => {
   // drop schema and create a new one
-  console.log(process.env);
   execSync(`npx prisma migrate reset --force`, {
     env: {
       ...process.env,
